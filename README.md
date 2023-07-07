@@ -2,8 +2,6 @@
 
 Un dispositivo IoT può utilizzare diverse tecnologie per comunicare. Le tecnologie di rete più comuni utilizzate nei dispositivi IoT includono Wi-Fi e Bluetooth. I dispositivi IoT comunicano tra di loro per consentire lo scambio di informazioni, dati e comandi. Questa comunicazione tra i dispositivi è essenziale per consentire il funzionamento coordinato di un sistema IoT e per consentire il controllo, il monitoraggio e l'automazione delle diverse applicazioni.
 
-Questo report si propone di valutare le performance delle tecnologie di comunicazione Wi-Fi utilizzando i protocolli MQTT e CoAP, nonché le performance del Bluetooth, concentrandosi su tre metriche chiave: latenza, throughput e packet loss.
-
 ## Obiettivi
 
 L'obiettivo di questo progetto è condurre una valutazione delle prestazioni delle tecnologie di rete Wi-Fi e Bluetooth per dispositivi IoT. Le metriche chiave che verranno misurate includono:
