@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <ESPmDNS.h>
 #include <BluetoothSerial.h>
 #include "setup_wifi.h"
 #include "mqtt.h"
@@ -6,7 +7,7 @@
 
 BluetoothSerial SerialBT;
 WiFiClient wifi_client;
-PubSubClient mqtt_client(SERVER, PORT, wifi_client);
+PubSubClient mqtt_client("MacBook-Pro-di-Francesco-3.local", PORT, wifi_client);
 
 void setup()
 {
@@ -16,7 +17,7 @@ void setup()
   connect_to_wifi();
 
   connect_to_mqtt();
-
+  MDNS.begin("Esp32-Client");
   printDeviceAddress();
 }
 

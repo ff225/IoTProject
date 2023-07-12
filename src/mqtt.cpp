@@ -5,7 +5,7 @@
 void connect_to_mqtt()
 {
 
-    mqtt_client.setServer(SERVER, PORT);
+    mqtt_client.setServer("MacBook-Pro-di-Francesco-3.local", PORT);
 
     while (!mqtt_client.connected())
     {
