@@ -1,9 +1,11 @@
 #include <Arduino.h>
+#include <ESPmDNS.h>
 #include "setup_wifi.h"
 #include "mqtt.h"
 
 WiFiClient wifi_client;
-PubSubClient mqtt_client(SERVER, PORT, wifi_client);
+PubSubClient mqtt_client("MacBook-Pro-di-Francesco-3.local", PORT, wifi_client);
+IPAddress serverIp;
 
 unsigned int start_time_thr = 0;
 unsigned int start_time_pl = 0;
@@ -16,9 +18,9 @@ void setup()
   Serial.begin(115200);
 
   connect_to_wifi();
-
   connect_to_mqtt();
   subscribe_to_topics();
+  MDNS.begin("Esp32-Client");
 }
 
 void loop()

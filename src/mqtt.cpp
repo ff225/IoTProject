@@ -3,10 +3,11 @@
 
 unsigned int packet_received = 0;
 unsigned int start_time_latency = 0;
+extern IPAddress serverIp;
 
 void connect_to_mqtt()
 {
-    mqtt_client.setServer(SERVER, PORT);
+    mqtt_client.setServer("MacBook-Pro-di-Francesco-3.local", PORT);
     mqtt_client.setCallback(mqtt_callback);
     while (!mqtt_client.connected())
     {
