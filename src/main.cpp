@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <ESPmDNS.h>
 #include "coap.h"
 #include "setup_wifi.h"
 #include "mqtt.h"
@@ -6,8 +7,8 @@
 WiFiUDP udp;
 Coap coap(udp);
 WiFiClient wifi_client;
-PubSubClient mqtt_client(SERVER, PORT, wifi_client);
-IPAddress ip(192, 168, 254, 38);
+PubSubClient mqtt_client("MacBook-Pro-di-Francesco-3.local", PORT, wifi_client);
+IPAddress ip;
 // IPAddress ip(192, 168, 1, 54);
 
 unsigned int start_time_coap_thr = 0;
@@ -22,10 +23,26 @@ void setup()
   Serial.begin(115200);
 
   connect_to_wifi();
-
+  
+  while (ip == INADDR_NONE)
+  {
+    if (!WiFi.hostByName("MacBook-Pro-di-Francesco-3.local", ip))
+    {
+      Serial.println("DNS resolution failed");
+      ip = MDNS.queryHost("MacBook-Pro-di-Francesco-3.local");
+      if (ip == INADDR_NONE)
+      {
+        Serial.println("MDNS resolution failed");
+        return;
+      }
+    }
+  }
   connect_to_mqtt();
 
   setup_coap();
+
+  Serial.println(ip.toString());
+  MDNS.begin("Esp32-Client");
 }
 
 void loop()
